@@ -11,3 +11,31 @@ afterAll(async () => {
   // closes the database connection so the jest command doesn't stall
   await db.destroy();
 });
+
+test("user can register", async () => {
+  const reguser = await supertest(server).post("/api/users/register").send({
+    username: "Ozzy",
+    password: "batty123",
+  });
+
+  expect(reguser.statusCode).toBe(201);
+  expect(reguser.body.id).toBeDefined();
+  expect(reguser.body.username).toBe("Ozzy");
+  expect(reguser.body.password).toBeDefined;
+});
+// test("can get dad jokes", async () => {
+//   const getJokes = await supertest(server).get("/jokes");
+
+//   expect(getJokes.statusCode).toBe(200);
+//   expect(getJokes.req.body[0].id).toBeDefined();
+//   expect(getJokes.body[0].joke).toBeDefined();
+// });
+
+test("user can log in" async ()=> {
+  cont logInUser = await supertest(server).post("/api/user/register").send({
+    username: "PoisonIvy",
+    password: "abc123"
+  })
+  expect(logInUser.statusCode).toBe(200);
+  expect(logInUser.)
+})
