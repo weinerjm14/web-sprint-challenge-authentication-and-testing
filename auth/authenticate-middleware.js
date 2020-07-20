@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-function restrict(department) {
+function restrict() {
   return async (req, res, next) => {
     const authError = {
       message: "Invalid credentials",

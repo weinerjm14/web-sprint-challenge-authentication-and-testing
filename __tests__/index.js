@@ -31,11 +31,12 @@ test("user can register", async () => {
 //   expect(getJokes.body[0].joke).toBeDefined();
 // });
 
-test("user can log in" async ()=> {
-  cont logInUser = await supertest(server).post("/api/user/register").send({
+test("user can log in", async () => {
+  const logInUser = await supertest(server).post("/api/users/login").send({
     username: "PoisonIvy",
-    password: "abc123"
-  })
+    password: "abc123",
+  });
   expect(logInUser.statusCode).toBe(200);
-  expect(logInUser.)
-})
+  expect(logInUser.body.token).toBeDefined;
+  expect(logInUser.body.message).toBe("Welcome PoisonIvy!");
+});
